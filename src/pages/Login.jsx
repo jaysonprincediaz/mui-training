@@ -16,18 +16,20 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 import BG from "../asset/BG.jpg";
 
-const Login = () => {
+const Login = (props) => {
+  const {email, setEmail} = props;
+
   const image = {
     boxContainer: {
       backgroundImage: `url(${BG})`,
-      height: "100vh",
+      height: "92vh",
       width: "100%",
     },
   };
 
   const paperStyle = {
     padding: "40px",
-    height: "87vh",
+    height: "80vh",
     width: "400px",
     margin: "auto",
     fontWeight: "400px",
@@ -81,7 +83,7 @@ const Login = () => {
             Forgot password?
           </Typography>
         </Box>
-        <Box sx={{ margin: "2rem 0" }}>
+        <Box sx={{ margin: "1rem 0" }}>
           <Button
             style={buttonStyle}
             variant="contained"
@@ -127,21 +129,24 @@ const Login = () => {
             />
           </Grid>
         </Box>
-        <Box marginTop="2rem">
-          <Divider>
-            <Typography fontSize={14} variant="p" component="span">
-              Don't have account?
-            </Typography>
-          </Divider>
-        </Box>
-        <Box display="flex" justifyContent="center">
-          <Typography
-            variant="p"
-            component="h4"
-            sx={{ color: "#13b1c2", cursor: "pointer" }}
-          >
-            SIGN UP
+        <Box
+          marginTop="2rem"
+          display="flex"
+          justifyContent="center"
+          flexDirection="row"
+        >
+          <Typography fontSize={14} variant="p" component="span">
+            Don't have an account?
           </Typography>
+          <Box sx={{ margin: "0 8px" }}>
+            <Typography
+              variant="p"
+              component="span"
+              sx={{ color: "#13b1c2", cursor: "pointer" }}
+            >
+              Sign up
+            </Typography>
+          </Box>
         </Box>
       </Paper>
     </Box>
