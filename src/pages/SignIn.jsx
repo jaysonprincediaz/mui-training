@@ -16,8 +16,16 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 import BG from "../asset/BG.jpg";
 
-const Login = (props) => {
-  const {email, setEmail} = props;
+import {
+  signInWithGooglePopup,
+  createUserDocumentFromAuth,
+} from "../utils/Firebase.utils";
+
+const SignIn = () => {
+  const logGoogleUser = async () => {
+    const { user } = await signInWithGooglePopup();
+    const userDocRef = await createUserDocumentFromAuth(user);
+  };
 
   const image = {
     boxContainer: {
@@ -116,6 +124,7 @@ const Login = (props) => {
                 margin: "3px 32px",
                 cursor: "pointer",
               }}
+              onClick={logGoogleUser}
             />
             <TwitterIcon
               sx={{
@@ -153,4 +162,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default SignIn;

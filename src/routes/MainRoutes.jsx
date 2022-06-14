@@ -5,7 +5,7 @@ import Home from "../pages/Home";
 import Feature from "../pages/Feature";
 import About from "../pages/About";
 import Pricing from "../pages/Pricing";
-import Login from "../pages/Login";
+import SignIn from "../pages/SignIn";
 
 const MainRoutes = () => {
   return (
@@ -15,7 +15,7 @@ const MainRoutes = () => {
         <Route path="/feature" element={<Feature />} />
         <Route path="/about" element={<About />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/sign-in" element={<SignIn />} />
       </Routes>
     </div>
   );

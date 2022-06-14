@@ -15,7 +15,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const style = {
-    backgroundColor: "#13b1c2",
+    backgroundColor: "#333333",
   };
 
   return (
@@ -46,8 +46,8 @@ const Navbar = () => {
             <Button onClick={() => navigate("/about")} color="inherit">
               About
             </Button>
-            <Button onClick={() => navigate("/login")} color="inherit">
-              Login
+            <Button onClick={() => navigate("/sign-in")} color="inherit">
+              Sign in
             </Button>
           </Stack>
         </Toolbar>
