@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Box from "@mui/material/Box";
@@ -9,10 +9,20 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
+import { UserContext } from "../context/UserContext";
+import { userSignOut } from "../utils/Firebase.utils";
+
 import EggOutlinedIcon from "@mui/icons-material/EggOutlined";
 
 const Navbar = () => {
   const navigate = useNavigate();
+
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const signOutHandler = async () => {
+    await userSignOut();
+    setCurrentUser(null);
+  };
 
   const style = {
     backgroundColor: "#333333",
@@ -46,9 +56,15 @@ const Navbar = () => {
             <Button onClick={() => navigate("/about")} color="inherit">
               About
             </Button>
-            <Button onClick={() => navigate("/sign-in")} color="inherit">
-              Sign in
-            </Button>
+            {currentUser ? (
+              <Button color="inherit" onClick={signOutHandler}>
+                SIGN OUT
+              </Button>
+            ) : (
+              <Button onClick={() => navigate("/sign-in")} color="inherit">
+                Sign in
+              </Button>
+            )}
           </Stack>
         </Toolbar>
       </AppBar>

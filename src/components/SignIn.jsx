@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Grid,
@@ -13,9 +13,10 @@ import {
 import EggOutlinedIcon from "@mui/icons-material/EggOutlined";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import GoogleIcon from "@mui/icons-material/Google";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 import BG from "../asset/BG.jpg";
+import { UserContext } from "../context/UserContext";
 
 import {
   signInWithGooglePopup,
@@ -59,6 +60,8 @@ const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  const { setCurrentUser } = useContext(UserContext);
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -74,12 +77,12 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserhWithEmailAndPassword(
+      const { user } = await signInAuthUserhWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
 
+      setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -193,11 +196,11 @@ const SignIn = () => {
                 }}
                 onClick={logGoogleUser}
               />
-              <TwitterIcon
+              <GitHubIcon
                 sx={{
                   fontSize: "2.6rem",
-                  color: "white",
-                  backgroundColor: "#13b1c2",
+                  color: "black",
+                  backgroundColor: "white",
                   borderRadius: "30px",
                   margin: "3px 5px",
                   cursor: "pointer",

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
 import Feature from "../pages/Feature";
 import About from "../pages/About";
 import Pricing from "../pages/Pricing";
-import SignIn from "../pages/SignIn";
+import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
 
 const MainRoutes = () => {
