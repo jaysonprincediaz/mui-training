@@ -17,12 +17,7 @@ import EggOutlinedIcon from "@mui/icons-material/EggOutlined";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-
-  const signOutHandler = async () => {
-    await userSignOut();
-    setCurrentUser(null);
-  };
+  const { currentUser } = useContext(UserContext);
 
   const style = {
     backgroundColor: "#333333",
@@ -57,7 +52,7 @@ const Navbar = () => {
               About
             </Button>
             {currentUser ? (
-              <Button color="inherit" onClick={signOutHandler}>
+              <Button color="inherit" onClick={userSignOut}>
                 SIGN OUT
               </Button>
             ) : (

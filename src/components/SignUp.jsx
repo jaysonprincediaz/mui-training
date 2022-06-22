@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import {
@@ -19,7 +19,6 @@ import {
   createAuthUserhWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../utils/Firebase.utils";
-import { UserContext } from "../context/UserContext";
 
 const image = {
   boxContainer: {
@@ -61,8 +60,6 @@ const SignUp = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
-
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -81,8 +78,6 @@ const SignUp = () => {
         email,
         password
       );
-
-      setCurrentUser(user);
 
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();

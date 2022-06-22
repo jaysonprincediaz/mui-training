@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Grid,
@@ -16,7 +16,6 @@ import GoogleIcon from "@mui/icons-material/Google";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 import BG from "../asset/BG.jpg";
-import { UserContext } from "../context/UserContext";
 
 import {
   signInWithGooglePopup,
@@ -60,15 +59,12 @@ const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
-
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const navigate = useNavigate();
@@ -77,12 +73,7 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserhWithEmailAndPassword(
-        email,
-        password
-      );
-
-      setCurrentUser(user);
+      await signInAuthUserhWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       switch (error.code) {
